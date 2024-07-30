@@ -1,15 +1,16 @@
-//
-//  TasksView.swift
-//  ToDoApp
-//
-//  Created by Jessy Viranaiken on 18/07/2024.
-//
+  //
+  //  TasksView.swift
+  //  ToDoApp
+  //
+  //  Created by Jessy Viranaiken on 18/07/2024.
+  //
 
 import SwiftUI
 
 struct TasksView: View {
+  @Environment(\.presentationMode) var presentationMode
   
-  @State var isActive = false
+  @State var isPresented_task = false
   @State var task_vm = TaskViewModel()
   @State var list_vm = ListViewModel()
   var targetList: ListModel
@@ -31,20 +32,30 @@ struct TasksView: View {
     }
   }
   
-    var body: some View {
-      NavigationStack{
+  var body: some View {
+    NavigationStack{
+      ZStack{
+        Color(.systemGray6)
+          .ignoresSafeArea()
         VStack(spacing: 0){
-          if sortTasks().isEmpty {
-            ZStack {
-              Color.white
-              ProgressView("Chargement en cours...")
-                .progressViewStyle(CircularProgressViewStyle())
-                .foregroundColor(.white)
-                .padding()
-                .background(Color(.systemGray5))
-                .cornerRadius(10)
-                .tint(.white)
+          if task_vm.isLoading {
+            LoadingView(listColor: targetList.fields.pictureColor)
+          } else if !task_vm.isLoading && sortTasks().isEmpty {
+            Spacer()
+            VStack{
+              Text("Aucun rappel dans cette liste.")
+                .foregroundStyle(.gray)
+                .bold()
+              Button(action: { isPresented_task.toggle() }, label: {
+                Text("Ajouter +")
+                  .foregroundStyle(.white)
+                  .bold()
+                  .frame(width: 100, height: 40)
+                  .background(ColorsModel().colorFromString(targetList.fields.pictureColor))
+                  .clipShape(.rect(cornerRadius: 5))
+              })
             }
+            Spacer()
           } else {
             List(sortTasks()){ task in
               HStack{
@@ -53,27 +64,58 @@ struct TasksView: View {
                 CheckBoxButton()
               }
             }
-            HStack{
-              Button(action: {isActive.toggle()}, label: {
-                Image(systemName: "plus.circle.fill")
-                  .font(.title)
-                Text("Rappel")
+          }
+          HStack{
+            Button(action: {isPresented_task.toggle()}, label: {
+              Image(systemName: "plus.circle.fill")
+                .font(.title)
+                .foregroundStyle(ColorsModel().colorFromString(targetList.fields.pictureColor))
+              Text("Rappel")
+                .font(.title3)
+                .foregroundStyle(ColorsModel().colorFromString(targetList.fields.pictureColor))
+            })
+            .bold()
+            Spacer()
+          }
+          .padding()
+          .background(Color(.systemGray6))
+          .sheet(isPresented: $isPresented_task) {
+            AddNewTaskView(targetList: targetList, isPresented: $isPresented_task )
+          }
+          .navigationBarBackButtonHidden(true)
+          .navigationTitle(targetList.fields.title)
+        }
+        .toolbar{
+          ToolbarItem(placement: .topBarLeading) {
+            Button(action: {
+              // Retourne a la vue parente 
+              presentationMode.wrappedValue.dismiss()
+            }) {
+              HStack{
+                Image(systemName: "arrow.left")
+                Text("Listes")
                   .font(.title3)
-              })
+              }
+              .foregroundStyle(ColorsModel().colorFromString(targetList.fields.pictureColor))
               .bold()
-              Spacer()
-            }
-            .padding()
-            .background(Color(.systemGray6))
-            .sheet(isPresented: $isActive) {
-              AddNewTaskView(targetList: targetList )
             }
           }
-        }
-        .onAppear(){
-          fetchData()
-          sortTasks()
+//          ToolbarItem(placement: .topBarTrailing) {
+//            Button(action: {
+//            
+//            }) {
+//              Text("Ajouter")
+//            }
+//          }
         }
       }
     }
+    .onAppear(){
+      fetchData()
+    }
+  }
 }
+
+  //#Preview {
+  //  TasksView(targetList: )
+  //}
