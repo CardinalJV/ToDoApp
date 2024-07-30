@@ -53,7 +53,7 @@ struct LaunchingView: View {
           .padding(4)
           .background(Color(.systemGray6))
           .sheet(isPresented: $isPresented_List) {
-            AddNewListView(isPresented: $isPresented_List)
+            AddNewListView()
           }
         }
         .onAppear(){
