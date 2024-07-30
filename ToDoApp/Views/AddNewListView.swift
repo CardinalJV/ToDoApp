@@ -11,10 +11,11 @@ struct AddNewListView: View {
   
   @State var list_vm = ListViewModel()
   @State var title = ""
-  @State var pictureColor: [String: Color] = ["blue": .blue]
-  @State var isActive_alert = false
-  @Binding var isPresented: Bool
+  @State private var pictureColor: [String: Color] = ["blue": .blue]
+  @State private var isActive_alert = false
   @State var fieldsComplete = false
+  
+  @Binding var isPresented: Bool
   
   func createList() async {
     // Vérifie que les champs ne sont pas vides
