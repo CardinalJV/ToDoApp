@@ -8,8 +8,8 @@ import SwiftUI
 
 struct LaunchingView: View {
   
-  @State var isActive_Task = false
-  @State var isActive_List = false
+  @State var isPresented_Task = false
+  @State var isPresented_List = false
   @State var list_vm = ListViewModel()
   
   func fetchData() {
@@ -37,7 +37,7 @@ struct LaunchingView: View {
           }
           Spacer()
           HStack{
-            Button(action: {isActive_Task.toggle()}, label: {
+            Button(action: {isPresented_Task.toggle()}, label: {
               Image(systemName: "plus.circle.fill")
                 .font(.title)
               Text("Rappel")
@@ -46,14 +46,14 @@ struct LaunchingView: View {
             .bold()
             Spacer()
             Button("Ajouter une liste"){
-              isActive_List.toggle()
+              isPresented_List.toggle()
             }
             .font(.title3)
           }
           .padding(4)
           .background(Color(.systemGray6))
-          .sheet(isPresented: $isActive_List) {
-            AddNewListView(isPresented: $isActive_List)
+          .sheet(isPresented: $isPresented_List) {
+            AddNewListView(isPresented: $isPresented_List)
           }
         }
         .onAppear(){
