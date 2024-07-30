@@ -22,4 +22,5 @@ struct TaskModelFields: Codable {
   var name: String
   var priority: String? = nil
   var isCompleted: Bool? = nil
+  var notes: String? = nil
 }
