@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TasksView: View {
-  @Environment(\.presentationMode) var presentationMode
+  @Environment(\.presentationMode) private var presentationMode
   
   @State var isPresented_task = false
   @State var task_vm = TaskViewModel()
@@ -100,13 +100,6 @@ struct TasksView: View {
               .bold()
             }
           }
-//          ToolbarItem(placement: .topBarTrailing) {
-//            Button(action: {
-//            
-//            }) {
-//              Text("Ajouter")
-//            }
-//          }
         }
       }
     }
