@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct CalendarCustom: View {
+  
+  @State var isShowing = false
+  
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      HStack{
+        Text("Date")
+        
+      }
     }
 }
 

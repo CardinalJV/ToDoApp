@@ -1,17 +1,24 @@
-//
-//  ToDoAppApp.swift
-//  ToDoApp
-//
-//  Created by Jessy Viranaiken on 15/07/2024.
-//
+  //
+  //  ToDoAppApp.swift
+  //  ToDoApp
+  //
+  //  Created by Jessy Viranaiken on 15/07/2024.
+  //
 
 import SwiftUI
 
 @main
 struct ToDoAppApp: App {
-    var body: some Scene {
-        WindowGroup {
-            LaunchingView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      LaunchingView()
+//        .task {
+//          do {
+//            try await KeyConstant.loadAPIKeys()
+//          } catch {
+//            debugPrint(error.localizedDescription)
+//          }
+//        }
     }
+  }
 }

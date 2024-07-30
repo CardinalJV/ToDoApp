@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum TaskPicker: CaseIterable {
+  case "Afficher les détails de la liste"
+  case "Trier par "
+}
