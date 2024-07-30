@@ -17,7 +17,7 @@ class TaskViewModel {
   private let apiToken = "patYRbCYvSI0gxfgE.1cf151356d8b06aa3dca4e81334401120accecbc5b7fac6518606be1d6132291"
   
   // Create
-  func createTask(name: String, priority: String, lists: [String]) async {
+  func createTask(name: String, priority: String, lists: [String], notes: String? = nil) async {
     
     let url = URL(string: apiUrl)!
     
@@ -25,7 +25,8 @@ class TaskViewModel {
       "fields": [
         "name": name,
         "priority": priority,
-        "lists": lists
+        "lists": lists,
+        "notes": notes ?? ""
       ]
     ]
     
