@@ -8,12 +8,12 @@ import Foundation
 import SwiftUI
 
 struct AddNewListView: View {
+  @Environment(\.presentationMode) private var presentationMode
   
   @State var list_vm = ListViewModel()
   @State var title = ""
-  @State var pictureColor: [String: Color] = ["blue": .blue]
-  @State var isActive_alert = false
-  @Binding var isPresented: Bool
+  @State private var pictureColor: [String: Color] = ["blue": .blue]
+  @State private var isActive_alert = false
   @State var fieldsComplete = false
   
   func createList() async {
@@ -81,7 +81,8 @@ struct AddNewListView: View {
       .toolbar{
         ToolbarItem(placement: .topBarLeading) {
           Button(action: {
-            isPresented = false
+              // Retourne a la vue parente
+            presentationMode.wrappedValue.dismiss()
           }) {
             Text("Annuler")
           }
@@ -91,7 +92,8 @@ struct AddNewListView: View {
             Task {
               await createList()
             }
-            isPresented = false
+              // Retourne a la vue parente
+            presentationMode.wrappedValue.dismiss()
           }) {
             Text("Ajouter")
           }
@@ -102,5 +104,5 @@ struct AddNewListView: View {
 }
 
 #Preview {
-  AddNewListView(isPresented: .constant(true))
+  AddNewListView()
 }

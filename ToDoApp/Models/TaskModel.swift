@@ -18,7 +18,9 @@ struct TaskModel: Identifiable, Codable {
 }
 
 struct TaskModelFields: Codable {
-  let lists: [String]
-  let name: String
-  let priority: String
+  var lists: [String]
+  var name: String
+  var priority: String? = nil
+  var isCompleted: Bool? = nil
+  var notes: String? = nil
 }
