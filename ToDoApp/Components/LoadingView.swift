@@ -7,9 +7,21 @@
 
 import SwiftUI
 
-struct ProgressView: View {
+struct LoadingView: View {
+  
+  @State var listColor: String
+  
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      ZStack{
+        Color.white
+        ProgressView("Chargement en cours...")
+          .progressViewStyle(CircularProgressViewStyle())
+          .foregroundColor(.white)
+          .padding()
+          .background(ColorsModel().colorFromString(self.listColor))
+          .cornerRadius(10)
+          .tint(.white)
+      }
     }
 }
 

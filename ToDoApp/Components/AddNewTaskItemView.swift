@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct AddNewTaskItemView: View {
+  
+  @State private var textField = ""
+  
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      HStack{
+        CheckBoxButton()
+        TextField("", text: $textField)
+        Spacer()
+      }
     }
 }
 
