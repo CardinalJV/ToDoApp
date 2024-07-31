@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddNewTaskView: View {
-    // Propriétés liée au model
+    // Propriétés liée au ViewModel
   var targetList: ListModel
   @State var task_vm = TaskViewModel()
   @State var list_vm = ListViewModel()
@@ -18,7 +18,8 @@ struct AddNewTaskView: View {
   @State var hasTapped = false
   @Binding var isPresented: Bool
   
-    // Propriétés lier au ViewModel
+    // Propriétés lier au Model
+  let pictureColor: String
   @State var priority = "Aucune"
   @State var name = ""
   @State var notes = "Notes"
@@ -37,7 +38,7 @@ struct AddNewTaskView: View {
       isActive_alert.toggle()
     } else {
       Task{
-        await task_vm.createTask(name: self.name, priority: self.priority, lists: [targetList.id], notes: self.notes)
+        await task_vm.createTask(name: self.name, priority: self.priority, lists: [targetList.id], notes: self.notes, dateToNotify: self.date)
       }
     }
   }
@@ -64,7 +65,7 @@ struct AddNewTaskView: View {
               )
           }
           Section{
-            NavigationLink("Détails", destination: AddNewTaskDetailView(date: self.$date, hour: self.$hour))
+            NavigationLink("Détails", destination: AddNewTaskDetailView(pictureColor: targetList.fields.pictureColor, date: self.$date, hour: self.$hour))
           }
           Section{
           }

@@ -9,10 +9,12 @@ import SwiftUI
 
 struct AddNewTaskDetailView: View {
   
+  let pictureColor: String
   @Binding var date: Date
   @Binding var hour: Date
   var priorityItem = ["Aucune", "Faible", "Moyenne", "Élevé"]
   @State var priority = "Aucune"
+  @State var useDate = false
   
   
   var body: some View {
@@ -20,23 +22,30 @@ struct AddNewTaskDetailView: View {
       VStack(spacing: 0){
         List{
           Section{
-            DatePicker(selection: $date, displayedComponents: .date) {
-              HStack{
-                ZStack{
-                  RoundedRectangle(cornerRadius: 5)
-                    .foregroundStyle(.blue)
-                    .frame(width: 30, height: 30)
-                  Image(systemName: "calendar")
-                    .foregroundStyle(.white)
-                }
-                Text("Date")
+            HStack{
+              ZStack{
+                RoundedRectangle(cornerRadius: 5)
+                  .foregroundStyle(ColorsModel().colorFromString(pictureColor))
+                  .frame(width: 30, height: 30)
+                Image(systemName: "calendar")
+                  .foregroundStyle(.white)
               }
+              Text("Date")
+              Toggle(isOn: $useDate, label: {
+                EmptyView()
+              })
+              .tint(ColorsModel().colorFromString(pictureColor))
+            }
+            if useDate {
+              DatePicker("", selection: $date, displayedComponents: .date)
+                .datePickerStyle(GraphicalDatePickerStyle())
+                .tint(ColorsModel().colorFromString(pictureColor))
             }
             DatePicker(selection: $hour, displayedComponents: .hourAndMinute) {
               HStack{
                 ZStack{
                   RoundedRectangle(cornerRadius: 5)
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(ColorsModel().colorFromString(pictureColor))
                     .frame(width: 30, height: 30)
                   Image(systemName: "clock.fill")
                     .foregroundStyle(.white)
@@ -44,9 +53,10 @@ struct AddNewTaskDetailView: View {
                 }
                 Text("Heure")
               }
+              
             }
           }
-          .padding(1)
+          .padding(4)
           Section{
             Picker(selection: $priority) {
               ForEach(priorityItem, id: \.self) {
@@ -56,7 +66,7 @@ struct AddNewTaskDetailView: View {
               HStack{
                 ZStack{
                   RoundedRectangle(cornerRadius: 5)
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(ColorsModel().colorFromString(pictureColor))
                     .frame(width: 30, height: 30)
                   Text("!")
                     .font(.title2)
@@ -67,7 +77,7 @@ struct AddNewTaskDetailView: View {
               }
             }
           }
-          .padding(1)
+          .padding(4)
         }
       }
       .navigationTitle("Détails")
@@ -76,6 +86,6 @@ struct AddNewTaskDetailView: View {
   }
 }
 
-//#Preview {
-//  AddNewTaskDetailView(date: .constant(), hour: <#Binding<Date>#>)
-//}
+  //#Preview {
+  //  AddNewTaskDetailView(date: .constant(), hour: <#Binding<Date>#>)
+  //}
