@@ -61,7 +61,7 @@ struct TasksView: View {
               HStack{
                 Text(task.fields.name)
                 Spacer()
-                CheckBoxButton()
+                CheckBoxButton(pictureColor: targetList.fields.pictureColor)
               }
             }
           }
@@ -80,7 +80,7 @@ struct TasksView: View {
           .padding()
           .background(Color(.systemGray6))
           .sheet(isPresented: $isPresented_task) {
-            AddNewTaskView(targetList: targetList, isPresented: $isPresented_task )
+            AddNewTaskView(targetList: targetList, isPresented: $isPresented_task, pictureColor: targetList.fields.pictureColor)
           }
           .navigationBarBackButtonHidden(true)
           .navigationTitle(targetList.fields.title)

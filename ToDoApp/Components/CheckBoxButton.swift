@@ -11,6 +11,7 @@ import SwiftUI
 struct CheckBoxButton: View {
   
   @State private var isCompleted = false
+  let pictureColor: String
   
   var body: some View {
     Button(action: {
@@ -19,7 +20,7 @@ struct CheckBoxButton: View {
       Image(systemName: self.isCompleted ? "checkmark.circle.fill" : "circle")
         .resizable()
         .frame(width: 24, height: 24)
-        .foregroundColor(self.isCompleted ? .green : .gray)
+        .foregroundColor(self.isCompleted ? ColorsModel().colorFromString(pictureColor) : .gray)
     }
   }
 }
