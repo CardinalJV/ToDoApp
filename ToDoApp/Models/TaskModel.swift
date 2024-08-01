@@ -20,6 +20,7 @@ struct TaskModel: Identifiable, Codable {
 struct TaskModelFields: Codable {
   var lists: [String]
   var name: String
+  var dateToNotify: String? = nil
   var priority: String? = nil
   var isCompleted: Bool? = nil
   var notes: String? = nil
