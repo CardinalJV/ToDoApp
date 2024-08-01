@@ -14,7 +14,8 @@ struct AddNewTaskDetailView: View {
   @Binding var hour: Date
   var priorityItem = ["Aucune", "Faible", "Moyenne", "Élevé"]
   @State var priority = "Aucune"
-  @State var useDate = false
+  @Binding var useDate: Bool
+  @Binding var useHour: Bool
   
   
   var body: some View {
@@ -41,19 +42,24 @@ struct AddNewTaskDetailView: View {
                 .datePickerStyle(GraphicalDatePickerStyle())
                 .tint(ColorsModel().colorFromString(pictureColor))
             }
-            DatePicker(selection: $hour, displayedComponents: .hourAndMinute) {
-              HStack{
-                ZStack{
-                  RoundedRectangle(cornerRadius: 5)
-                    .foregroundStyle(ColorsModel().colorFromString(pictureColor))
-                    .frame(width: 30, height: 30)
-                  Image(systemName: "clock.fill")
-                    .foregroundStyle(.white)
-                    .bold()
-                }
-                Text("Heure")
+            HStack{
+              ZStack{
+                RoundedRectangle(cornerRadius: 5)
+                  .foregroundStyle(ColorsModel().colorFromString(pictureColor))
+                  .frame(width: 30, height: 30)
+                Image(systemName: "calendar")
+                  .foregroundStyle(.white)
               }
-              
+              Text("Heure")
+              Toggle(isOn: $useHour, label: {
+                EmptyView()
+              })
+              .tint(ColorsModel().colorFromString(pictureColor))
+            }
+            if useHour {
+              DatePicker("", selection: $hour, displayedComponents: .hourAndMinute)
+                .datePickerStyle(WheelDatePickerStyle())
+                .tint(ColorsModel().colorFromString(pictureColor))
             }
           }
           .padding(4)
