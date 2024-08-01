@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct ToDoAppApp: App {
+struct ToDoApp: App {
   var body: some Scene {
     WindowGroup {
-      LaunchingView()
+      LandingView()
 //        .task {
 //          do {
 //            try await KeyConstant.loadAPIKeys()

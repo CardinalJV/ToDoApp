@@ -6,7 +6,7 @@
   //
 import SwiftUI
 
-struct LaunchingView: View {
+struct LandingView: View {
   
   @State var isPresented_Task = false
   @State var isPresented_List = false
@@ -67,7 +67,7 @@ struct LaunchingView: View {
 }
 
 #Preview {
-  LaunchingView()
+  LandingView()
 }
 
   //#Preview {
