@@ -6,18 +6,19 @@
   //  C.R.U.D
 
 import Foundation
+import Observation
 
 @Observable
 class TaskViewModel {
   
-  var tasks = [TaskModel]()
+   var tasks = [TaskModel]()
   var isLoading = false
   
   private let apiUrl = "https://api.airtable.com/v0/app3Dfn6h8N2Wzzty/Tasks"
   private let apiToken = "patYRbCYvSI0gxfgE.1cf151356d8b06aa3dca4e81334401120accecbc5b7fac6518606be1d6132291"
   
   // Create
-  func createTask(name: String, priority: String, lists: [String], notes: String? = nil, dateToNotify: Date?) async {
+  func createTask(name: String, priority: String, lists: [String], notes: String? = nil, dateAndHourToNotify: String?) async {
     
     let url = URL(string: apiUrl)!
     
@@ -27,7 +28,7 @@ class TaskViewModel {
         "priority": priority,
         "lists": lists,
         "notes": notes ?? "",
-        "dateToNotify": dateToNotify ?? ""
+        "dateToNotify": dateAndHourToNotify ?? ""
       ]
     ]
     
@@ -84,8 +85,4 @@ class TaskViewModel {
       
     }
   }
-  // Update
-//  func updateToDoTask(){}
-  // Delete
-//  func deleteToDoTask(){}
 }
