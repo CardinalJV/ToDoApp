@@ -24,7 +24,35 @@ struct AddNewTaskView: View {
   @State var name = ""
   @State var notes = "Notes"
   @State var date = Date()
+  @State var useDate = false
+  @State var useHour = false
   @State var hour = Date()
+  
+  func combineDateAndHour(date: Date?, hour: Date?) -> Date? {
+    guard let date = date else {
+      return nil
+    }
+    if let hour = hour {
+      let calendar = Calendar.current
+      let hourComponents = calendar.dateComponents([.hour, .minute], from: hour)
+      var dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+      dateComponents.hour = hourComponents.hour
+      dateComponents.minute = hourComponents.minute
+      return calendar.date(from: dateComponents)
+    } else {
+      return date
+    }
+  }
+  
+  func formatDateToISO8601(date: Date?) -> String? {
+    guard let date = date else {
+      return nil
+    }
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    return formatter.string(from: date)
+  }
   
   func fetchData() {
     Task{
@@ -38,7 +66,14 @@ struct AddNewTaskView: View {
       isActive_alert.toggle()
     } else {
       Task{
-        await task_vm.createTask(name: self.name, priority: self.priority, lists: [targetList.id], notes: self.notes, dateToNotify: self.date)
+        let formattedDate = formatDateToISO8601(date: combineDateAndHour(date: useDate ? self.date : nil, hour: useHour ? self.hour : nil))
+        await task_vm.createTask(
+          name: self.name,
+          priority: self.priority,
+          lists: [targetList.id],
+          notes: self.notes,
+          dateAndHourToNotify: formattedDate
+        )
       }
     }
   }
@@ -65,7 +100,7 @@ struct AddNewTaskView: View {
               )
           }
           Section{
-            NavigationLink("Détails", destination: AddNewTaskDetailView(pictureColor: targetList.fields.pictureColor, date: self.$date, hour: self.$hour))
+            NavigationLink("Détails", destination: AddNewTaskDetailView(pictureColor: targetList.fields.pictureColor, date: self.$date, hour: self.$hour, useDate: self.$useDate, useHour: self.$useHour))
           }
           Section{
           }
@@ -103,6 +138,6 @@ struct AddNewTaskView: View {
   }
 }
 
-  //#Preview {
-  //  AddNewTaskView()
-  //}
+//#Preview {
+//  LandingView()
+//}
