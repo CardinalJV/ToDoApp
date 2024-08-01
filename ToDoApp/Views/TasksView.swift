@@ -59,7 +59,12 @@ struct TasksView: View {
           } else {
             List(sortTasks()){ task in
               HStack{
-                Text(task.fields.name)
+                VStack(alignment: .leading){
+                  Text(task.fields.name)
+                  Text(task.fields.notes ?? "")
+                    .font(.subheadline)
+                    .foregroundStyle(.gray)
+                }
                 Spacer()
                 CheckBoxButton(pictureColor: targetList.fields.pictureColor)
               }
@@ -88,7 +93,7 @@ struct TasksView: View {
         .toolbar{
           ToolbarItem(placement: .topBarLeading) {
             Button(action: {
-              // Retourne a la vue parente 
+                // Retourne a la vue parente
               presentationMode.wrappedValue.dismiss()
             }) {
               HStack{
