@@ -24,9 +24,9 @@ struct AddNewTaskView: View {
   @State var name = ""
   @State var notes = "Notes"
   @State var date = Date()
+  @State var hour = Date()
   @State var useDate = false
   @State var useHour = false
-  @State var hour = Date()
   
   func combineDateAndHour(date: Date?, hour: Date?) -> Date? {
     guard let date = date else {
@@ -101,8 +101,6 @@ struct AddNewTaskView: View {
           }
           Section{
             NavigationLink("Détails", destination: AddNewTaskDetailView(pictureColor: targetList.fields.pictureColor, date: self.$date, hour: self.$hour, useDate: self.$useDate, useHour: self.$useHour))
-          }
-          Section{
           }
         }
       }
