@@ -16,13 +16,7 @@ struct TasksView: View {
   var targetList: ListModel
   
   func sortTasks() -> [TaskModel] {
-    var sortedTasks: [TaskModel] = []
-    for task in task_vm.tasks {
-      if task.fields.lists[0] == targetList.id {
-        sortedTasks.append(task)
-      }
-    }
-    return sortedTasks
+    return task_vm.tasks.filter { $0.fields.lists[0] == targetList.id }
   }
   
   func fetchData() {
@@ -113,7 +107,3 @@ struct TasksView: View {
     }
   }
 }
-
-  //#Preview {
-  //  TasksView(targetList: )
-  //}
