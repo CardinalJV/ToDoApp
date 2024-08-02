@@ -10,13 +10,15 @@ import SwiftUI
 struct AddNewTaskDetailView: View {
   
   let pictureColor: String
+  
   @Binding var date: Date
   @Binding var hour: Date
+  @Binding var useDate: Bool
+  @State var showPickerDate = true
+  @State var showPickerHour = true
+  @Binding var useHour: Bool
   var priorityItem = ["Aucune", "Faible", "Moyenne", "Élevé"]
   @State var priority = "Aucune"
-  @Binding var useDate: Bool
-  @Binding var useHour: Bool
-  
   
   var body: some View {
     NavigationStack{
@@ -31,13 +33,25 @@ struct AddNewTaskDetailView: View {
                 Image(systemName: "calendar")
                   .foregroundStyle(.white)
               }
-              Text("Date")
+              VStack(alignment: .leading){
+                Text("Date")
+                if useDate {
+                  Text(date.formatted(.dateTime.day(.twoDigits).month(.twoDigits).year()))
+                    .font(.subheadline)
+                    .foregroundStyle(ColorsModel().colorFromString(pictureColor))
+                }
+              }
+              Spacer()
               Toggle(isOn: $useDate, label: {
                 EmptyView()
               })
               .tint(ColorsModel().colorFromString(pictureColor))
+              .onTapGesture{}
             }
-            if useDate {
+            .onTapGesture {
+              showPickerDate.toggle()
+            }
+            if useDate && showPickerDate {
               DatePicker("", selection: $date, displayedComponents: .date)
                 .datePickerStyle(GraphicalDatePickerStyle())
                 .tint(ColorsModel().colorFromString(pictureColor))
@@ -50,13 +64,24 @@ struct AddNewTaskDetailView: View {
                 Image(systemName: "calendar")
                   .foregroundStyle(.white)
               }
-              Text("Heure")
+              VStack(alignment: .leading){
+                Text("Heure")
+                if useHour {
+                  Text(date.formatted(.dateTime.hour().minute()))
+                    .font(.subheadline)
+                    .foregroundStyle(ColorsModel().colorFromString(pictureColor))
+                }
+              }
               Toggle(isOn: $useHour, label: {
                 EmptyView()
               })
               .tint(ColorsModel().colorFromString(pictureColor))
+              .onTapGesture{}
             }
-            if useHour {
+            .onTapGesture {
+              showPickerHour.toggle()
+            }
+            if useHour && showPickerHour {
               DatePicker("", selection: $hour, displayedComponents: .hourAndMinute)
                 .datePickerStyle(WheelDatePickerStyle())
                 .tint(ColorsModel().colorFromString(pictureColor))
@@ -92,6 +117,6 @@ struct AddNewTaskDetailView: View {
   }
 }
 
-  //#Preview {
-  //  AddNewTaskDetailView(date: .constant(), hour: <#Binding<Date>#>)
-  //}
+  #Preview {
+    LandingView()
+  }
