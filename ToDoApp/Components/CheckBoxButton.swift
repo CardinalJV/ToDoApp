@@ -10,12 +10,17 @@ import SwiftUI
 
 struct CheckBoxButton: View {
   
-  @State private var isCompleted = false
+  @State var isCompleted: Bool
+  let task: TaskModel
   let pictureColor: String
+  let task_vm = TaskViewModel()
   
   var body: some View {
     Button(action: {
       self.isCompleted.toggle()
+      Task {
+        await task_vm.deleteTask(id: self.task.id)
+      }
     }) {
       Image(systemName: self.isCompleted ? "checkmark.circle.fill" : "circle")
         .resizable()
