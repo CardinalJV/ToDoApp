@@ -12,12 +12,6 @@ struct LandingView: View {
   @State var isPresented_List = false
   @State var list_vm = ListViewModel()
   
-  func fetchData() {
-    Task {
-      await list_vm.readLists()
-    }
-  }
-  
   var body: some View {
     NavigationStack{
       ZStack{
@@ -56,8 +50,8 @@ struct LandingView: View {
             AddNewListView()
           }
         }
-        .onAppear(){
-          fetchData()
+        .task {
+          await list_vm.readLists()
         }
         .padding()
       }
