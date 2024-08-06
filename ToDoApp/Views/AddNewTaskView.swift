@@ -54,12 +54,6 @@ struct AddNewTaskView: View {
     return formatter.string(from: date)
   }
   
-  func fetchData() {
-    Task{
-      await list_vm.readLists()
-    }
-  }
-  
   func createTask() {
       // Vérifie que les champs ne sont pas vides
     if name.isEmpty {
@@ -130,8 +124,8 @@ struct AddNewTaskView: View {
         }
       }
     }
-    .onAppear(){
-      fetchData()
+    .task {
+      await list_vm.readLists()
     }
   }
 }
