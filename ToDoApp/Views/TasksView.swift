@@ -10,20 +10,14 @@ import SwiftUI
 struct TasksView: View {
   @Environment(\.presentationMode) private var presentationMode
   
-  @State var isPresented_task = false
   @State var task_vm = TaskViewModel()
   @State var list_vm = ListViewModel()
   var targetList: ListModel
   
+  @State var isPresented_task = false
+  
   func sortTasks() -> [TaskModel] {
     return task_vm.tasks.filter { $0.fields.lists[0] == targetList.id }
-  }
-  
-  func fetchData() {
-    Task {
-      await task_vm.readTasks()
-      await list_vm.readLists()
-    }
   }
   
   var body: some View {
@@ -60,7 +54,7 @@ struct TasksView: View {
                     .foregroundStyle(.gray)
                 }
                 Spacer()
-                CheckBoxButton(pictureColor: targetList.fields.pictureColor)
+                CheckBoxButton(isCompleted: false, task: task, pictureColor: targetList.fields.pictureColor)
               }
             }
           }
@@ -102,8 +96,10 @@ struct TasksView: View {
         }
       }
     }
-    .onAppear(){
-      fetchData()
+    .task {
+      // Récupération des données depuis l'API
+      await task_vm.readTasks()
+      await list_vm.readLists()
     }
   }
 }
