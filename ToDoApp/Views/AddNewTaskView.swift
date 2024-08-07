@@ -18,7 +18,7 @@ struct AddNewTaskView: View {
   @State var hasTapped = false
   @Binding var isPresented: Bool
   
-    // Propriétés lier au Model
+  // Propriétés lier au Model 
   let pictureColor: String
   @State var priority = "Aucune"
   @State var name = ""
@@ -65,7 +65,8 @@ struct AddNewTaskView: View {
           name: self.name,
           priority: self.priority,
           lists: [targetList.id],
-          notes: self.notes,
+          // Vérifie que notes ne possède plus sa valeur par défaut sinon on renvoie nil
+          notes: self.notes == "Notes" ? nil : self.notes,
           dateAndHourToNotify: formattedDate
         )
       }
@@ -130,6 +131,6 @@ struct AddNewTaskView: View {
   }
 }
 
-//#Preview {
-//  LandingView()
-//}
+  //#Preview {
+  //  LandingView()
+  //}
