@@ -14,9 +14,9 @@ struct AddNewTaskDetailView: View {
   @Binding var date: Date
   @Binding var hour: Date
   @Binding var useDate: Bool
+  @Binding var useHour: Bool
   @State var showPickerDate = true
   @State var showPickerHour = true
-  @Binding var useHour: Bool
   var priorityItem = ["Aucune", "Faible", "Moyenne", "Élevé"]
   @State var priority = "Aucune"
   
