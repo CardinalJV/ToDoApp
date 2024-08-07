@@ -8,8 +8,7 @@
 import Foundation
 import Observation
 
-@Observable
-class TaskViewModel {
+@Observable class TaskViewModel {
   
   var tasks = [TaskModel]()
   var isLoading = true
@@ -17,20 +16,35 @@ class TaskViewModel {
   private let apiUrl = "https://api.airtable.com/v0/app3Dfn6h8N2Wzzty/Tasks"
   private let apiToken = "patYRbCYvSI0gxfgE.1cf151356d8b06aa3dca4e81334401120accecbc5b7fac6518606be1d6132291"
   
+  // Trie des taches 
+  func sortTasks(targetList: ListModel) -> [TaskModel] {
+    return self.tasks.filter { $0.fields.lists[0] == targetList.id }
+  }
+  
     // Create
-  func createTask(name: String, priority: String, lists: [String], notes: String? = nil, dateAndHourToNotify: String?) async {
+  func createTask(name: String, priority: String, lists: [String], notes: String? = nil, dateAndHourToNotify: String? = nil) async {
     
     let url = URL(string: apiUrl)!
-    // Création de l'objet JSON qui sera envoyer dans la requete
-    let jsonObject: [String: Any] = [
-      "fields": [
-        "name": name,
-        "priority": priority,
-        "lists": lists,
-        "notes": notes ?? "",
-        "dateToNotify": dateAndHourToNotify ?? ""
-      ]
+    
+      // Objet JSON qui sera envoyer dans la requete
+    var fields: [String: Any] = [
+      "name": name,
+      "priority": priority,
+      "lists": lists
     ]
+    
+      // Optionnels notes
+    if let notes = notes {
+      fields["notes"] = notes
+      print(notes)
+    }
+      // Optionnels date
+    if let dateToNotify = dateAndHourToNotify, !dateToNotify.isEmpty {
+      fields["dateToNotify"] = dateToNotify
+    }
+    
+      // Ajoute les optionnels dans la requete si ces derniers sont valides
+    let jsonObject: [String: Any] = ["fields": fields]
     
     do {
       
