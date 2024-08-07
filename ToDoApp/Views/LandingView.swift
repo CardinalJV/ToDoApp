@@ -55,7 +55,6 @@ struct LandingView: View {
         }
         .padding()
       }
-//      .ignoresSafeArea() 
     }
   }
 }
