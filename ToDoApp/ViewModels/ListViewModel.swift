@@ -7,8 +7,7 @@
 
 import Foundation
 
-@Observable
-class ListViewModel {
+@Observable class ListViewModel {
   
   var lists = [ListModel]()
   
