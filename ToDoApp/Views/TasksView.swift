@@ -11,14 +11,9 @@ struct TasksView: View {
   @Environment(\.presentationMode) private var presentationMode
   
   @State var task_vm = TaskViewModel()
-  @State var list_vm = ListViewModel()
   var targetList: ListModel
   
   @State var isPresented_task = false
-  
-  func sortTasks() -> [TaskModel] {
-    return task_vm.tasks.filter { $0.fields.lists[0] == targetList.id }
-  }
   
   var body: some View {
     NavigationStack{
@@ -28,7 +23,7 @@ struct TasksView: View {
         VStack(spacing: 0){
           if task_vm.isLoading {
             LoadingView(listColor: targetList.fields.pictureColor)
-          } else if !task_vm.isLoading && sortTasks().isEmpty {
+          } else if !task_vm.isLoading && task_vm.sortTasks(targetList: self.targetList).isEmpty {
             Spacer()
             VStack{
               Text("Aucun rappel dans cette liste.")
@@ -45,13 +40,15 @@ struct TasksView: View {
             }
             Spacer()
           } else {
-            List(sortTasks()){ task in
+            List(task_vm.sortTasks(targetList: self.targetList)){ task in
               HStack{
                 VStack(alignment: .leading){
                   Text(task.fields.name)
-                  Text(task.fields.notes ?? "")
-                    .font(.subheadline)
-                    .foregroundStyle(.gray)
+                  if (task.fields.notes != nil) {
+                    Text(task.fields.notes!)
+                      .font(.subheadline)
+                      .foregroundStyle(.gray)
+                  }
                 }
                 Spacer()
                 CheckBoxButton(isCompleted: false, task: task, pictureColor: targetList.fields.pictureColor)
@@ -97,9 +94,8 @@ struct TasksView: View {
       }
     }
     .task {
-      // Récupération des données depuis l'API
+        // Récupération des données depuis l'API
       await task_vm.readTasks()
-      await list_vm.readLists()
     }
   }
 }
