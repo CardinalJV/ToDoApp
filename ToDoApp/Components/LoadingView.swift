@@ -13,7 +13,7 @@ struct LoadingView: View {
   
     var body: some View {
       ZStack{
-        Color.white
+        Color(.systemGray6)
         ProgressView("Chargement en cours...")
           .progressViewStyle(CircularProgressViewStyle())
           .foregroundColor(.white)
