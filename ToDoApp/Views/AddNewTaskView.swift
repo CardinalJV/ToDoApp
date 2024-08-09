@@ -28,39 +28,13 @@ struct AddNewTaskView: View {
   @State var useDate = false
   @State var useHour = false
   
-  func combineDateAndHour(date: Date?, hour: Date?) -> Date? {
-    guard let date = date else {
-      return nil
-    }
-    if let hour = hour {
-      let calendar = Calendar.current
-      let hourComponents = calendar.dateComponents([.hour, .minute], from: hour)
-      var dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
-      dateComponents.hour = hourComponents.hour
-      dateComponents.minute = hourComponents.minute
-      return calendar.date(from: dateComponents)
-    } else {
-      return date
-    }
-  }
-  
-  func formatDateToISO8601(date: Date?) -> String? {
-    guard let date = date else {
-      return nil
-    }
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-    formatter.timeZone = TimeZone(secondsFromGMT: 0)
-    return formatter.string(from: date)
-  }
-  
   func createTask() {
       // Vérifie que les champs ne sont pas vides
     if name.isEmpty {
       isActive_alert.toggle()
     } else {
       Task{
-        let formattedDate = formatDateToISO8601(date: combineDateAndHour(date: useDate ? self.date : nil, hour: useHour ? self.hour : nil))
+        let formattedDate = Date().formatDateToISO8601(date: Date().combineDateAndHour(date: useDate ? self.date : nil, hour: useHour ? self.hour : nil))
         await task_vm.createTask(
           name: self.name,
           priority: self.priority,
