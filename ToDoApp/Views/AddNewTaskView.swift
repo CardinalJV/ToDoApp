@@ -18,7 +18,7 @@ struct AddNewTaskView: View {
   @State var hasTapped = false
   @Binding var isPresented: Bool
   
-  // Propriétés lier au Model 
+    // Propriétés lier au Model
   let pictureColor: String
   @State var priority = "Aucune"
   @State var name = ""
@@ -29,20 +29,24 @@ struct AddNewTaskView: View {
   @State var useHour = false
   
   func createTask() {
-      // Vérifie que les champs ne sont pas vides
     if name.isEmpty {
       isActive_alert.toggle()
     } else {
       Task{
         let formattedDate = Date().formatDateToISO8601(date: Date().combineDateAndHour(date: useDate ? self.date : nil, hour: useHour ? self.hour : nil))
-        await task_vm.createTask(
-          name: self.name,
-          priority: self.priority,
-          lists: [targetList.id],
-          // Vérifie que notes ne possède plus sa valeur par défaut sinon on renvoie nil
-          notes: self.notes == "Notes" ? nil : self.notes,
-          dateAndHourToNotify: formattedDate
+        let newTask = TaskModel(
+          id: nil, // Créer par le serveur
+          createdTime: nil, // Créer par le serveur
+          fields: TaskModelFields(
+            lists: [targetList.id],
+            name: self.name,
+            dateToNotify: formattedDate,
+            priority: self.priority,
+            isCompleted: false, // Initialisation par défaut
+            notes: self.notes == "Notes" ? nil : self.notes
+          )
         )
+        await task_vm.createTask(newTask)
       }
     }
   }
