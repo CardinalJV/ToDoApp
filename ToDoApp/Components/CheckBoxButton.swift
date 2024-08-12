@@ -19,7 +19,7 @@ struct CheckBoxButton: View {
     Button(action: {
       self.isCompleted.toggle()
       Task {
-        await task_vm.deleteTask(id: self.task.id)
+        await task_vm.deleteTask(id: self.task.id!) // Déballage forcé car ID généré automatiquemet par l'API
       }
     }) {
       Image(systemName: self.isCompleted ? "checkmark.circle.fill" : "circle")
