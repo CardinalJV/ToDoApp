@@ -51,7 +51,15 @@ struct TasksView: View {
                   }
                 }
                 Spacer()
-                CheckBoxButton(isCompleted: false, task: task, pictureColor: targetList.fields.pictureColor)
+                CheckBoxButton(isCompleted: task.fields.isCompleted ?? false, task: task, pictureColor: targetList.fields.pictureColor)
+              }
+              .swipeActions{
+                Button("Supprimer") {
+                  Task{
+                    await task_vm.deleteTask(id: task.id!)
+                  }
+                }
+                .tint(.red)
               }
             }
           }
