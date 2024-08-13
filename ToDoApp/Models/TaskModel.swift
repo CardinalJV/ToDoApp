@@ -14,7 +14,7 @@ struct TasksResponse: Codable {
 struct TaskModel: Identifiable, Codable {
   var id: String? = nil
   var createdTime: String? = nil
-  let fields: TaskModelFields
+  var fields: TaskModelFields
 }
 
 struct TaskModelFields: Codable {
