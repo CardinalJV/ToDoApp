@@ -20,7 +20,7 @@ import Observation
   func sortTasks(targetList: ListModel) -> [TaskModel] {
     return self.tasks.filter { $0.fields.lists[0] == targetList.id }
   }
-  
+    // Create
   func createTask(_ task: TaskModel) async {
     
     let url = URL(string: apiUrl)!
@@ -33,8 +33,9 @@ import Observation
     do {
       
       let encoder = JSONEncoder()
-      encoder.outputFormatting = .prettyPrinted // Pour une sortie JSON plus lisible
+      encoder.outputFormatting = .prettyPrinted
       let jsonData = try encoder.encode(task)
+      print(jsonData.base64EncodedString())
       request.httpBody = jsonData
       
       let (_, response) = try await URLSession.shared.data(for: request)
@@ -54,59 +55,6 @@ import Observation
     self.isLoading = false
     
   }
-  
-    // Create
-//  func createTask(name: String, priority: String, lists: [String], notes: String? = nil, dateAndHourToNotify: String? = nil) async {
-//    
-//    let url = URL(string: apiUrl)!
-//    
-//      // Objet JSON qui sera envoyer dans la requete
-//    var fields: [String: Any] = [
-//      "name": name,
-//      "priority": priority,
-//      "lists": lists
-//    ]
-//    
-//      // Optionnels notes
-//    if let notes = notes {
-//      fields["notes"] = notes
-//      print(notes)
-//    }
-//      // Optionnels date
-//    if let dateToNotify = dateAndHourToNotify, !dateToNotify.isEmpty {
-//      fields["dateToNotify"] = dateToNotify
-//    }
-//    
-//      // Ajoute les optionnels dans la requete si ces derniers sont valides
-//    let jsonObject: [String: Any] = ["fields": fields]
-//    
-//    var request = URLRequest(url: url)
-//    request.httpMethod = "POST"
-//    request.setValue("Bearer \(apiToken)", forHTTPHeaderField: "Authorization")
-//    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//    
-//    do {
-//      
-//      let newTask = try JSONSerialization.data(withJSONObject: jsonObject, options: [])
-//      request.httpBody = newTask
-//      
-//      let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//        guard let data = data else {
-//          return print(String(describing: error))
-//        }
-//        print(String(data: data, encoding: .utf8)!)
-//      }
-//      
-//      task.resume()
-//      
-//      self.isLoading = false
-//      
-//    } catch {
-//      
-//      print(error.localizedDescription)
-//      
-//    }
-//  }
     // Read
   func readTasks() async {
     
@@ -132,6 +80,45 @@ import Observation
       self.isLoading.toggle()
       
     }
+  }
+    // Update
+  func updateTask(task: TaskModel) async {
+    let url = URL(string: "\(apiUrl)/\(task.id)")! // Assurez-vous que l'URL inclut l'ID de la tâche
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "PATCH"
+    request.setValue("Bearer \(apiToken)", forHTTPHeaderField: "Authorization")
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+      // Préparer les champs à mettre à jour
+    var fieldsToUpdate: [String: Any] = [:]
+    
+    if let isCompleted = task.fields.isCompleted {
+      fieldsToUpdate["isCompleted"] = isCompleted
+    }
+    
+    let updateBody: [String: Any] = [
+      "fields": fieldsToUpdate
+    ]
+    
+    do {
+        // Encoder le corps de la requête en JSON
+      let jsonData = try JSONSerialization.data(withJSONObject: updateBody, options: [])
+      request.httpBody = jsonData
+      
+      let (_, response) = try await URLSession.shared.data(for: request)
+      
+      if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+        print("Task updated successfully!")
+      } else {
+        print("Failed to update task")
+      }
+      
+    } catch {
+      print("Failed to encode task: \(error.localizedDescription)")
+    }
+    
+    self.isLoading = false
   }
     // Delete
   func deleteTask(id: String) async {
