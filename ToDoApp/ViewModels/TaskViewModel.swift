@@ -83,7 +83,8 @@ import Observation
   }
     // Update
   func updateTask(task: TaskModel) async {
-    let url = URL(string: "\(apiUrl)/\(task.id)")! // Assurez-vous que l'URL inclut l'ID de la tâche
+    
+    let url = URL(string: "\(apiUrl)/\(task.id!)")!
     
     var request = URLRequest(url: url)
     request.httpMethod = "PATCH"
@@ -102,7 +103,7 @@ import Observation
     ]
     
     do {
-        // Encoder le corps de la requête en JSON
+
       let jsonData = try JSONSerialization.data(withJSONObject: updateBody, options: [])
       request.httpBody = jsonData
       
