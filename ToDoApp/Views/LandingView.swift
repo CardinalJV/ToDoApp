@@ -31,18 +31,13 @@ struct LandingView: View {
           }
           Spacer()
           HStack{
-            Button(action: {isPresented_Task.toggle()}, label: {
+            Spacer()
+            Button(action: {isPresented_List.toggle()}, label: {
               Image(systemName: "plus.circle.fill")
-                .font(.title)
-              Text("Rappel")
-                .font(.title3)
+                .font(.system(size: 50))
             })
             .bold()
             Spacer()
-            Button("Ajouter une liste"){
-              isPresented_List.toggle()
-            }
-            .font(.title3)
           }
           .padding(4)
           .background(Color(.systemGray6))
@@ -65,4 +60,4 @@ struct LandingView: View {
 
   //#Preview {
   //  ButtonList(title: "Today", itemCount: 2, picture: "calendar.circle.fill", pictureColor: "blue")
-//}
+  //}
