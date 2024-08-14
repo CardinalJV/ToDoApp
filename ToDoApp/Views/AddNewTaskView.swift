@@ -95,8 +95,8 @@ struct AddNewTaskView: View {
               .foregroundStyle(Color(.systemGray4))
           }
           Button(action: {
-            createTask()
-            isPresented = false
+              createTask()
+              isPresented = false
           }) {
             Text("Ajouter")
           }
@@ -108,7 +108,3 @@ struct AddNewTaskView: View {
     }
   }
 }
-
-  //#Preview {
-  //  LandingView()
-  //}
