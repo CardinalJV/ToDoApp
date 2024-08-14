@@ -8,7 +8,7 @@ import Foundation
 import SwiftUI
 
 struct AddNewListView: View {
-  @Environment(\.presentationMode) private var presentationMode
+  @Binding var isPresented: Bool
   
   @State var list_vm = ListViewModel()
   @State var title = ""
@@ -54,7 +54,6 @@ struct AddNewListView: View {
               .bold()
               .background(Color(.systemGray5))
               .clipShape(.rect(cornerRadius: 10))
-              .onChange(of: title) {title = title.lowercased()}
           }
           .padding()
           .frame(width: 350)
@@ -82,7 +81,7 @@ struct AddNewListView: View {
         ToolbarItem(placement: .topBarLeading) {
           Button(action: {
               // Retourne a la vue parente
-            presentationMode.wrappedValue.dismiss()
+            self.isPresented = false
           }) {
             Text("Annuler")
           }
@@ -93,7 +92,7 @@ struct AddNewListView: View {
               await createList()
             }
               // Retourne a la vue parente
-            presentationMode.wrappedValue.dismiss()
+            self.isPresented.toggle()
           }) {
             Text("Ajouter")
           }
@@ -101,8 +100,4 @@ struct AddNewListView: View {
       }
     }
   }
-}
-
-#Preview {
-  AddNewListView()
 }
