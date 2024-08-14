@@ -10,6 +10,7 @@ import SwiftUI
 struct TasksView: View {
   @Environment(\.presentationMode) private var presentationMode
   
+    //  @State var task_vm = TaskViewModel()
   @State var task_vm = TaskViewModel()
   var targetList: ListModel
   
@@ -101,9 +102,13 @@ struct TasksView: View {
         }
       }
     }
-    .task {
-        // Récupération des données depuis l'API
+    .task{
       await task_vm.readTasks()
+    }
+    .onChange(of: isPresented_task) {
+      Task {
+        await task_vm.readTasks()
+      }
     }
   }
 }
