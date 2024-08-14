@@ -56,7 +56,7 @@ import Observation
     
   }
     // Read
-  func readTasks() async {
+  @MainActor func readTasks() async {
     
     let url = URL(string: apiUrl)!
     
@@ -71,15 +71,14 @@ import Observation
       
       self.tasks = decodedData.records
       
-      self.isLoading = false
-      
     } catch {
       
       print(error.localizedDescription)
       
-      self.isLoading.toggle()
-      
     }
+    
+    self.isLoading = false
+    
   }
     // Update
   func updateTask(task: TaskModel) async {
@@ -120,9 +119,12 @@ import Observation
     }
     
     self.isLoading = false
+    
   }
     // Delete
   func deleteTask(id: String) async {
+    
+    self.isLoading = true
     
     let url = URL(string: apiUrl + "/" + id)!
     
@@ -146,12 +148,13 @@ import Observation
         }
       }
       
-      self.isLoading = false
-      
     } catch {
       
       print(error.localizedDescription)
       
     }
+    
+    self.isLoading = false
+    
   }
 }
