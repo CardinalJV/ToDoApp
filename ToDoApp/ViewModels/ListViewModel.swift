@@ -19,7 +19,7 @@ import Foundation
   
   // Create
   func createList(title: String, pictureColor: String) async {
-    
+
     let url = URL(string: apiUrl)!
     
     let jsonObject: [String: Any] = [
@@ -46,6 +46,7 @@ import Foundation
           return print(String(describing: error))
         }
         print(String(data: data, encoding: .utf8)!)
+        
       }
       
       task.resume()
@@ -58,7 +59,7 @@ import Foundation
   }
   
   // Read
-  func readLists() async {
+  @MainActor func readLists() async {
     
     let url = URL(string: apiUrl)!
     
@@ -73,6 +74,36 @@ import Foundation
       
       self.lists = decodedData.records
       
+    } catch {
+      
+      print(error.localizedDescription)
+      
+    }
+  }
+  // Delete
+  func deleteList(id: String) async {
+    
+    let url = URL(string: apiUrl + "/" + id)!
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "DELETE"
+    request.setValue("Bearer \(apiToken)", forHTTPHeaderField: "Authorization")
+    
+    do {
+      
+      let (_, response) = try await URLSession.shared.data(for: request)
+        // Déballage de l'optionnal afin de vérifier l'existence de la réponse
+      if let httpResponse = response as? HTTPURLResponse {
+          // Si la requète réussie, statut 200, alors on supprime la tâche localement
+        if httpResponse.statusCode == 200 {
+          print("Suppression réussie")
+          if let index = lists.firstIndex(where: { $0.id == id }) {
+            lists.remove(at: index)
+          }
+        } else {
+          print("Failed to delete list: \(httpResponse.statusCode)")
+        }
+      }
     } catch {
       
       print(error.localizedDescription)
