@@ -42,11 +42,16 @@ struct LandingView: View {
           .padding(4)
           .background(Color(.systemGray6))
           .sheet(isPresented: $isPresented_List) {
-            AddNewListView()
+            AddNewListView(isPresented: $isPresented_List)
           }
         }
         .task {
           await list_vm.readLists()
+        }
+        .onChange(of: isPresented_List){
+          Task{
+            await list_vm.readLists()
+          }
         }
         .padding()
       }
@@ -57,7 +62,3 @@ struct LandingView: View {
 #Preview {
   LandingView()
 }
-
-  //#Preview {
-  //  ButtonList(title: "Today", itemCount: 2, picture: "calendar.circle.fill", pictureColor: "blue")
-  //}
