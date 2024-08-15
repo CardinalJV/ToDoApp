@@ -9,7 +9,7 @@ import SwiftUI
 struct LandingView: View {
   
   @State var isPresented_Task = false
-  @State var isPresented_List = false
+  @State var isPresented_AddNewListView = false
   @State var list_vm = ListViewModel()
   
   var body: some View {
@@ -19,7 +19,7 @@ struct LandingView: View {
           .ignoresSafeArea()
         VStack(spacing: 0){
           if list_vm.lists.isEmpty {
-            Text("C'est vide")
+            Text("Chargement en cours")
           } else {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
               ForEach(list_vm.lists) { list in
@@ -32,7 +32,7 @@ struct LandingView: View {
           Spacer()
           HStack{
             Spacer()
-            Button(action: {isPresented_List.toggle()}, label: {
+            Button(action: {isPresented_AddNewListView.toggle()}, label: {
               Image(systemName: "plus.circle.fill")
                 .font(.system(size: 50))
             })
@@ -41,14 +41,14 @@ struct LandingView: View {
           }
           .padding(4)
           .background(Color(.systemGray6))
-          .sheet(isPresented: $isPresented_List) {
-            AddNewListView(isPresented: $isPresented_List)
+          .sheet(isPresented: $isPresented_AddNewListView) {
+            AddNewListView(isPresented: $isPresented_AddNewListView)
           }
         }
         .task {
           await list_vm.readLists()
         }
-        .onChange(of: isPresented_List){
+        .onChange(of: isPresented_AddNewListView){
           Task{
             await list_vm.readLists()
           }
