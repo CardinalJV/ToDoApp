@@ -8,7 +8,6 @@ import SwiftUI
 
 struct LandingView: View {
   
-  @State var isPresented_Task = false
   @State var isPresented_AddNewListView = false
   @State var list_vm = ListViewModel()
   
