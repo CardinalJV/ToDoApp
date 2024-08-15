@@ -14,7 +14,7 @@ struct TasksView: View {
   @State var task_vm = TaskViewModel()
   var targetList: ListModel
   
-  @State var isPresented_task = false
+  @State var isPresented_AddNewTaskView = false
   
   var body: some View {
     NavigationStack{
@@ -22,15 +22,15 @@ struct TasksView: View {
         Color(.systemGray6)
           .ignoresSafeArea()
         VStack(spacing: 0){
-          if task_vm.isLoading {
+          if task_vm.tasks.isEmpty {
             LoadingView(listColor: targetList.fields.pictureColor)
-          } else if !task_vm.isLoading && task_vm.sortTasks(targetList: self.targetList).isEmpty {
+         } else if !task_vm.isLoading && task_vm.sortTasks(targetList: self.targetList).isEmpty {
             Spacer()
             VStack{
               Text("Aucun rappel dans cette liste.")
                 .foregroundStyle(.gray)
                 .bold()
-              Button(action: { isPresented_task.toggle() }, label: {
+              Button(action: { isPresented_AddNewTaskView.toggle() }, label: {
                 Text("Ajouter +")
                   .foregroundStyle(.white)
                   .bold()
@@ -65,7 +65,7 @@ struct TasksView: View {
             }
           }
           HStack{
-            Button(action: {isPresented_task.toggle()}, label: {
+            Button(action: {isPresented_AddNewTaskView.toggle()}, label: {
               Image(systemName: "plus.circle.fill")
                 .font(.title)
                 .foregroundStyle(ColorsModel().colorFromString(targetList.fields.pictureColor))
@@ -78,8 +78,8 @@ struct TasksView: View {
           }
           .padding()
           .background(Color(.systemGray6))
-          .sheet(isPresented: $isPresented_task) {
-            AddNewTaskView(targetList: targetList, isPresented: $isPresented_task, pictureColor: targetList.fields.pictureColor)
+          .sheet(isPresented: $isPresented_AddNewTaskView) {
+            AddNewTaskView(targetList: targetList, isPresented: $isPresented_AddNewTaskView, pictureColor: targetList.fields.pictureColor)
           }
           .navigationBarBackButtonHidden(true)
           .navigationTitle(targetList.fields.title)
@@ -105,7 +105,7 @@ struct TasksView: View {
     .task{
       await task_vm.readTasks()
     }
-    .onChange(of: isPresented_task) {
+    .onChange(of: isPresented_AddNewTaskView) {
       Task {
         await task_vm.readTasks()
       }
