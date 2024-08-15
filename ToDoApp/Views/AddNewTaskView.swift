@@ -83,7 +83,7 @@ struct AddNewTaskView: View {
       .toolbar{
         ToolbarItem(placement: .topBarLeading) {
           Button(action: {
-            isPresented = false
+            self.isPresented.toggle()
           }) {
             Text("Annuler")
           }
@@ -96,7 +96,7 @@ struct AddNewTaskView: View {
           }
           Button(action: {
               createTask()
-              isPresented = false
+            self.isPresented.toggle()
           }) {
             Text("Ajouter")
           }
