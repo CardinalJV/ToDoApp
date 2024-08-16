@@ -20,10 +20,10 @@ struct LandingView: View {
           if list_vm.lists.isEmpty {
             Text("Chargement en cours")
           } else {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)], spacing: 15) {
               ForEach(list_vm.lists) { list in
                 NavigationLink(destination: TasksView(targetList: list), label: {
-                  ButtonList(title: list.fields.title, itemCount: list.fields.itemCount, picture: list.fields.picture, pictureColor: list.fields.pictureColor)
+                  ButtonList(title: list.fields.title, itemCount: list.fields.itemCount!, picture: list.fields.picture, pictureColor: list.fields.pictureColor)
                 })
               }
             }
