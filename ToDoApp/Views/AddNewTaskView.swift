@@ -38,7 +38,7 @@ struct AddNewTaskView: View {
           id: nil, // Créer par le serveur
           createdTime: nil, // Créer par le serveur
           fields: TaskModelFields(
-            lists: [targetList.id],
+            lists: [targetList.id!],
             name: self.name,
             dateToNotify: formattedDate,
             priority: self.priority,
