@@ -13,15 +13,15 @@ struct ListResponse: Codable {
 }
 
 struct ListModel: Identifiable, Codable {
-  let id: String
-  let createdTime: String
+  var id: String? = nil
+  var createdTime: String? = nil
   let fields: ListFields
 }
 
 struct ListFields: Codable {
   var tasks: [String]? = nil
   let title: String
-  let itemCount: Int
+  var itemCount: Int? = nil
   let picture: String
   let pictureColor: String
 }
