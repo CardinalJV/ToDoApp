@@ -64,7 +64,7 @@ import Foundation
     request.setValue("Bearer \(apiToken)", forHTTPHeaderField: "Authorization")
     
     do {
-      
+
       let (data, _) = try await URLSession.shared.data(for: request)
       
       let decodedData = try JSONDecoder().decode(ListResponse.self, from: data)
