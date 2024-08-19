@@ -10,8 +10,7 @@ import SwiftUI
 struct AddNewTaskView: View {
     // Propriétés liée au ViewModel
   var targetList: ListModel
-  @State var task_vm = TaskViewModel()
-  @State var list_vm = ListViewModel()
+  @Binding var task_vm: TaskViewModel
   
     // Propriétes lier a la navigation
   @State private var isActive_alert = false
@@ -95,16 +94,13 @@ struct AddNewTaskView: View {
               .foregroundStyle(Color(.systemGray4))
           }
           Button(action: {
-              createTask()
+            createTask()
             self.isPresented.toggle()
           }) {
             Text("Ajouter")
           }
         }
       }
-    }
-    .task {
-      await list_vm.readLists()
     }
   }
 }
