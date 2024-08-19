@@ -10,6 +10,7 @@ struct LandingView: View {
   
   @State var isPresented_AddNewListView = false
   @State var list_vm = ListViewModel()
+  @State var task_vm = TaskViewModel()
   
   var body: some View {
     NavigationStack{
@@ -22,7 +23,7 @@ struct LandingView: View {
           } else {
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)], spacing: 15) {
               ForEach(list_vm.lists) { list in
-                NavigationLink(destination: TasksView(targetList: list), label: {
+                NavigationLink(destination: TasksView(task_vm: self.$task_vm, targetList: list), label: {
                   ButtonList(title: list.fields.title, itemCount: list.fields.itemCount!, picture: list.fields.picture, pictureColor: list.fields.pictureColor)
                 })
               }
@@ -46,6 +47,7 @@ struct LandingView: View {
         }
         .task {
           await list_vm.readLists()
+          await task_vm.readTasks()
         }
         .onChange(of: isPresented_AddNewListView){
           Task{
