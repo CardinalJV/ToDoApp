@@ -35,15 +35,4 @@ extension Date {
     return formatter.string(from: date)
   }
   
-  func parseISO8601ToDate(iso8601String: String?) -> Date? {
-    guard let iso8601String = iso8601String else {
-      return nil
-    }
-    
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-    formatter.timeZone = TimeZone(secondsFromGMT: 0)
-    
-    return formatter.date(from: iso8601String)
-  }
 }
