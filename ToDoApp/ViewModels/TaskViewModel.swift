@@ -115,7 +115,9 @@ import Observation
       }
       
     } catch {
+      
       print("Failed to encode task: \(error.localizedDescription)")
+      
     }
     
     self.isLoading = false
