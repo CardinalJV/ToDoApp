@@ -9,9 +9,7 @@ import SwiftUI
 
 struct TasksView: View {
   @Environment(\.presentationMode) private var presentationMode
-  
-    //  @State var task_vm = TaskViewModel()
-  @State var task_vm = TaskViewModel()
+  @Binding var task_vm: TaskViewModel
   var targetList: ListModel
   
   @State var isPresented_AddNewTaskView = false
@@ -23,8 +21,11 @@ struct TasksView: View {
           .ignoresSafeArea()
         VStack(spacing: 0){
           if task_vm.tasks.isEmpty {
+            
             LoadingView(listColor: targetList.fields.pictureColor)
+            
          } else if !task_vm.isLoading && task_vm.sortTasks(targetList: self.targetList).isEmpty {
+           
             Spacer()
             VStack{
               Text("Aucun rappel dans cette liste.")
@@ -40,7 +41,9 @@ struct TasksView: View {
               })
             }
             Spacer()
+           
           } else {
+            
             List(task_vm.sortTasks(targetList: self.targetList)){ task in
               HStack{
                 VStack(alignment: .leading){
@@ -49,6 +52,11 @@ struct TasksView: View {
                     Text(task.fields.notes!)
                       .font(.subheadline)
                       .foregroundStyle(.gray)
+                  }
+                  if (task.fields.dateToNotify != nil) {
+                    Text(task.fields.formattedDateAndTime()!)
+                      .font(.footnote)
+                      .foregroundStyle(ColorsModel().colorFromString(targetList.fields.pictureColor))
                   }
                 }
                 Spacer()
@@ -79,7 +87,7 @@ struct TasksView: View {
           .padding()
           .background(Color(.systemGray6))
           .sheet(isPresented: $isPresented_AddNewTaskView) {
-            AddNewTaskView(targetList: targetList, isPresented: $isPresented_AddNewTaskView, pictureColor: targetList.fields.pictureColor)
+            AddNewTaskView(targetList: targetList, task_vm: self.$task_vm, isPresented: $isPresented_AddNewTaskView, pictureColor: targetList.fields.pictureColor)
           }
           .navigationBarBackButtonHidden(true)
           .navigationTitle(targetList.fields.title)
@@ -101,9 +109,6 @@ struct TasksView: View {
           }
         }
       }
-    }
-    .task{
-      await task_vm.readTasks()
     }
     .onChange(of: isPresented_AddNewTaskView) {
       Task {
