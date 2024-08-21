@@ -48,4 +48,13 @@ struct TaskModelFields: Codable {
     
     return outputFormatter.string(from: date)
   }
+  
+  func convertPriority(priority: String? = nil) -> String {
+    switch priority {
+      case "Faible": return "!"
+      case "Moyenne": return "!!"
+      case "Élevée": return "!!!"
+      default: return ""
+    }
+  }
 }

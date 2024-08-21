@@ -17,12 +17,14 @@
 		A7A9661C2C57A83C007D7694 /* APIKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = A7A9661B2C57A83C007D7694 /* APIKeys.json */; settings = {ASSET_TAGS = (APIKey, ); }; };
 		A7A9661E2C57A981007D7694 /* KeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A9661D2C57A981007D7694 /* KeyConstant.swift */; };
 		A7A966232C57FF64007D7694 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A966222C57FF64007D7694 /* LoadingView.swift */; };
-		A7BC2A3E2C4AAA8A00D4B0FD /* LaunchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BC2A3D2C4AAA8A00D4B0FD /* LaunchingView.swift */; };
 		A7C5E2B82C4EAB7A00861570 /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5E2B72C4EAB7A00861570 /* CheckBoxButton.swift */; };
 		A7C5E2BA2C4EB1CD00861570 /* ButtonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5E2B92C4EB1CD00861570 /* ButtonList.swift */; };
-		A7E851EE2C4567350095B6F9 /* ToDoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E851ED2C4567350095B6F9 /* ToDoAppApp.swift */; };
-		A7E851F22C4567360095B6F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7E851F12C4567360095B6F9 /* Assets.xcassets */; };
-		A7E851F52C4567370095B6F9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7E851F42C4567370095B6F9 /* Preview Assets.xcassets */; };
+		A7DD69FE2C752B92001AAA44 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DD69FD2C752B92001AAA44 /* LandingView.swift */; };
+		A7DD6A002C752BA9001AAA44 /* ToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DD69FF2C752BA9001AAA44 /* ToDoApp.swift */; };
+		A7DD6A032C752BC3001AAA44 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DD6A012C752BC3001AAA44 /* Date.swift */; };
+		A7DD6A092C752BD7001AAA44 /* Lists-Model.md in Resources */ = {isa = PBXBuildFile; fileRef = A7DD6A042C752BD7001AAA44 /* Lists-Model.md */; };
+		A7DD6A0A2C752BD7001AAA44 /* Tasks-Model.md in Resources */ = {isa = PBXBuildFile; fileRef = A7DD6A052C752BD7001AAA44 /* Tasks-Model.md */; };
+		A7DD6A0B2C752BD7001AAA44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7DD6A072C752BD7001AAA44 /* Assets.xcassets */; };
 		A7E851FF2C4568100095B6F9 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E851FE2C4568100095B6F9 /* TaskModel.swift */; };
 		A7E852032C4574600095B6F9 /* AddNewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E852022C4574600095B6F9 /* AddNewTaskView.swift */; };
 /* End PBXBuildFile section */
@@ -38,13 +40,15 @@
 		A7A9661B2C57A83C007D7694 /* APIKeys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = APIKeys.json; sourceTree = "<group>"; };
 		A7A9661D2C57A981007D7694 /* KeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyConstant.swift; sourceTree = "<group>"; };
 		A7A966222C57FF64007D7694 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		A7BC2A3D2C4AAA8A00D4B0FD /* LaunchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchingView.swift; sourceTree = "<group>"; };
 		A7C5E2B72C4EAB7A00861570 /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		A7C5E2B92C4EB1CD00861570 /* ButtonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonList.swift; sourceTree = "<group>"; };
+		A7DD69FD2C752B92001AAA44 /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		A7DD69FF2C752BA9001AAA44 /* ToDoApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoApp.swift; sourceTree = "<group>"; };
+		A7DD6A012C752BC3001AAA44 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		A7DD6A042C752BD7001AAA44 /* Lists-Model.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Lists-Model.md"; sourceTree = "<group>"; };
+		A7DD6A052C752BD7001AAA44 /* Tasks-Model.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Tasks-Model.md"; sourceTree = "<group>"; };
+		A7DD6A072C752BD7001AAA44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7E851EA2C4567350095B6F9 /* ToDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7E851ED2C4567350095B6F9 /* ToDoAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoAppApp.swift; sourceTree = "<group>"; };
-		A7E851F12C4567360095B6F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A7E851F42C4567370095B6F9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A7E851FE2C4568100095B6F9 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		A7E852022C4574600095B6F9 /* AddNewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +83,32 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		A7DD6A022C752BC3001AAA44 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A7DD6A012C752BC3001AAA44 /* Date.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A7DD6A062C752BD7001AAA44 /* API-Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				A7DD6A042C752BD7001AAA44 /* Lists-Model.md */,
+				A7DD6A052C752BD7001AAA44 /* Tasks-Model.md */,
+			);
+			path = "API-Ressources";
+			sourceTree = "<group>";
+		};
+		A7DD6A082C752BD7001AAA44 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				A7DD6A062C752BD7001AAA44 /* API-Ressources */,
+				A7DD6A072C752BD7001AAA44 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		A7E851E12C4567350095B6F9 = {
 			isa = PBXGroup;
 			children = (
@@ -98,13 +128,14 @@
 		A7E851EC2C4567350095B6F9 /* ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
-				A7E851ED2C4567350095B6F9 /* ToDoAppApp.swift */,
+				A7DD69FF2C752BA9001AAA44 /* ToDoApp.swift */,
+				A7DD6A082C752BD7001AAA44 /* Assets */,
+				A7DD6A022C752BC3001AAA44 /* Extensions */,
 				A7A9661F2C57CCEB007D7694 /* Services */,
 				A7C5E2B62C4EAB2A00861570 /* Components */,
 				A7E851FD2C45679A0095B6F9 /* ViewModels */,
 				A7E851FC2C4567800095B6F9 /* Models */,
 				A7E851FB2C4567770095B6F9 /* Views */,
-				A7E851F12C4567360095B6F9 /* Assets.xcassets */,
 				A7E851F32C4567370095B6F9 /* Preview Content */,
 			);
 			path = ToDoApp;
@@ -113,7 +144,6 @@
 		A7E851F32C4567370095B6F9 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				A7E851F42C4567370095B6F9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -124,7 +154,7 @@
 				A74733B22C590284002EFCE5 /* AddNewTaskDetailView.swift */,
 				A7E852022C4574600095B6F9 /* AddNewTaskView.swift */,
 				A74E97D52C49756000C63853 /* TasksView.swift */,
-				A7BC2A3D2C4AAA8A00D4B0FD /* LaunchingView.swift */,
+				A7DD69FD2C752B92001AAA44 /* LandingView.swift */,
 				A71007B32C4F95E400DA1C8C /* AddNewListView.swift */,
 			);
 			path = Views;
@@ -210,8 +240,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7E851F52C4567370095B6F9 /* Preview Assets.xcassets in Resources */,
-				A7E851F22C4567360095B6F9 /* Assets.xcassets in Resources */,
+				A7DD6A092C752BD7001AAA44 /* Lists-Model.md in Resources */,
+				A7DD6A0A2C752BD7001AAA44 /* Tasks-Model.md in Resources */,
+				A7DD6A0B2C752BD7001AAA44 /* Assets.xcassets in Resources */,
 				A7A9661C2C57A83C007D7694 /* APIKeys.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,17 +254,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7DD6A002C752BA9001AAA44 /* ToDoApp.swift in Sources */,
 				A7380CE52C46B9CC00A35A3C /* TaskViewModel.swift in Sources */,
 				A7E851FF2C4568100095B6F9 /* TaskModel.swift in Sources */,
+				A7DD6A032C752BC3001AAA44 /* Date.swift in Sources */,
+				A7DD69FE2C752B92001AAA44 /* LandingView.swift in Sources */,
 				A71007B42C4F95E400DA1C8C /* AddNewListView.swift in Sources */,
-				A7BC2A3E2C4AAA8A00D4B0FD /* LaunchingView.swift in Sources */,
 				A74E97D22C496BDF00C63853 /* ListViewModel.swift in Sources */,
 				A7C5E2B82C4EAB7A00861570 /* CheckBoxButton.swift in Sources */,
 				A7C5E2BA2C4EB1CD00861570 /* ButtonList.swift in Sources */,
 				A75033752C529818005E4E31 /* ColorsModel.swift in Sources */,
 				A74E97D62C49756000C63853 /* TasksView.swift in Sources */,
 				A7E852032C4574600095B6F9 /* AddNewTaskView.swift in Sources */,
-				A7E851EE2C4567350095B6F9 /* ToDoAppApp.swift in Sources */,
 				A7A966232C57FF64007D7694 /* LoadingView.swift in Sources */,
 				A74E97D42C496E0700C63853 /* ListModel.swift in Sources */,
 				A7A9661E2C57A981007D7694 /* KeyConstant.swift in Sources */,
@@ -296,7 +328,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -353,7 +385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

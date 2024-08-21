@@ -72,7 +72,7 @@ struct AddNewTaskView: View {
               )
           }
           Section{
-            NavigationLink("Détails", destination: AddNewTaskDetailView(pictureColor: targetList.fields.pictureColor, date: self.$date, hour: self.$hour, useDate: self.$useDate, useHour: self.$useHour))
+            NavigationLink("Détails", destination: AddNewTaskDetailView(pictureColor: targetList.fields.pictureColor, date: self.$date, hour: self.$hour, useDate: self.$useDate, useHour: self.$useHour, priority: self.$priority))
           }
         }
       }

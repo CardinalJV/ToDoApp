@@ -47,7 +47,11 @@ struct TasksView: View {
             List(task_vm.sortTasks(targetList: self.targetList)){ task in
               HStack{
                 VStack(alignment: .leading){
-                  Text(task.fields.name)
+                  HStack{
+                    Text(task.fields.name)
+                    Text(task.fields.convertPriority(priority: task.fields.priority))
+                      .foregroundStyle(ColorsModel().colorFromString(targetList.fields.pictureColor))
+                  }
                   if (task.fields.notes != nil) {
                     Text(task.fields.notes!)
                       .font(.subheadline)

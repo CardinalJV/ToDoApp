@@ -21,29 +21,24 @@ struct LandingView: View {
           if list_vm.lists.isEmpty {
             Text("Chargement en cours")
           } else {
-            LazyVGrid(columns: [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)], spacing: 15) {
-              ForEach(list_vm.lists) { list in
-                NavigationLink(destination: TasksView(task_vm: self.$task_vm, targetList: list), label: {
-                  ButtonList(title: list.fields.title, itemCount: list.fields.itemCount!, picture: list.fields.picture, pictureColor: list.fields.pictureColor)
-                })
+            ScrollView{
+              LazyVGrid(columns: [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)], spacing: 17.5) {
+                ForEach(list_vm.lists) { list in
+                  NavigationLink(destination: TasksView(task_vm: self.$task_vm, targetList: list), label: {
+                    ButtonList(title: list.fields.title, itemCount: list.fields.itemCount!, picture: list.fields.picture, pictureColor: list.fields.pictureColor)
+                  })
+                }
               }
             }
-          }
-          Spacer()
-          HStack{
-            Spacer()
             Button(action: {isPresented_AddNewListView.toggle()}, label: {
               Image(systemName: "plus.circle.fill")
                 .font(.system(size: 50))
             })
             .bold()
-            Spacer()
           }
-          .padding(4)
-          .background(Color(.systemGray6))
-          .sheet(isPresented: $isPresented_AddNewListView) {
-            AddNewListView(isPresented: $isPresented_AddNewListView)
-          }
+        }
+        .sheet(isPresented: $isPresented_AddNewListView) {
+          AddNewListView(isPresented: $isPresented_AddNewListView)
         }
         .task {
           await list_vm.readLists()
