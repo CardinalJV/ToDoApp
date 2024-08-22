@@ -27,8 +27,6 @@ L'application comprend plusieurs composants UI réutilisables tels que des bouto
 
 Des extensions de types natifs, comme la gestion des dates, sont incluses pour faciliter le développement et l'ajout de fonctionnalités.
 
----
-
 ## Installation
 
 Clonez le projet depuis le dépôt GitHub, puis ouvrez-le dans Xcode. Assurez-vous que vous utilisez la dernière version de Xcode compatible avec Swift 5.x et SwiftUI pour éviter tout problème de compatibilité.
