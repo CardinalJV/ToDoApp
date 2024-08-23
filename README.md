@@ -1,6 +1,6 @@
 # ToDoApp
 
-MyToDoApp est une application de gestion de tâches développée en SwiftUI. Cette application permet aux utilisateurs de créer, organiser et suivre leurs tâches quotidiennes de manière simple et efficace.
+ToDoApp est une application de gestion de tâches développée en SwiftUI. Cette application permet aux utilisateurs de créer, organiser et suivre leurs tâches quotidiennes de manière simple et efficace.
 
 ## Fonctionnalités Principales
 
