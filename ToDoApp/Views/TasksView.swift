@@ -92,6 +92,11 @@ struct TasksView: View {
           .background(Color(.systemGray6))
           .sheet(isPresented: $isPresented_AddNewTaskView) {
             AddNewTaskView(targetList: targetList, task_vm: self.$task_vm, isPresented: $isPresented_AddNewTaskView, pictureColor: targetList.fields.pictureColor)
+              .onDisappear{
+                Task{
+                  await task_vm.readTasks()
+                }
+              }
           }
           .navigationBarBackButtonHidden(true)
           .navigationTitle(targetList.fields.title)
@@ -112,11 +117,6 @@ struct TasksView: View {
             }
           }
         }
-      }
-    }
-    .onChange(of: isPresented_AddNewTaskView) {
-      Task {
-        await task_vm.readTasks()
       }
     }
   }
