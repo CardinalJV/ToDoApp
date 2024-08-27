@@ -32,7 +32,7 @@ struct AddNewTaskView: View {
       isActive_alert.toggle()
     } else {
       Task{
-        let formattedDate = Date().formatDateToISO8601(date: Date().combineDateAndHour(date: useDate ? self.date : nil, hour: useHour ? self.hour : nil))
+        let formattedDate = date.formatDateToISO8601(date: date.combineDateAndHour(date: useDate ? self.date : nil, hour: useHour ? self.hour : nil))
         let newTask = TaskModel(
           id: nil, // Créer par le serveur
           createdTime: nil, // Créer par le serveur
@@ -94,8 +94,8 @@ struct AddNewTaskView: View {
               .foregroundStyle(Color(.systemGray4))
           }
           Button(action: {
-            createTask()
-            self.isPresented.toggle()
+              createTask()
+              self.isPresented.toggle()
           }) {
             Text("Ajouter")
           }
