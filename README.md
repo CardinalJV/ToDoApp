@@ -1,3 +1,5 @@
+![SwiftUI](https://raw.githubusercontent.com/CardinalJV/CardinalJV/main/assets/logo-swift/swiftui-96x96_2x.png)
+
 # ToDoApp
 
 ToDoApp est une application de gestion de tâches développée en SwiftUI. Cette application permet aux utilisateurs de créer, organiser et suivre leurs tâches quotidiennes de manière simple et efficace.
