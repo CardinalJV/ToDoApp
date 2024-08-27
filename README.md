@@ -33,3 +33,8 @@ Des extensions de types natifs, comme la gestion des dates, sont incluses pour f
 ## Installation
 
 Clonez le projet depuis le dépôt GitHub, puis ouvrez-le dans Xcode. Assurez-vous que vous utilisez la dernière version de Xcode compatible avec Swift 5 et SwiftUI pour éviter tout problème de compatibilité.
+
+## Fonctionnalités à venir
+
+Intégration de SwiftData : 
+Mise en place d'une solution pour enregistrer les données localement, offrant ainsi une expérience utilisateur plus fluide et une meilleure gestion des données hors ligne.
