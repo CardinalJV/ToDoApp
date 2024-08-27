@@ -94,8 +94,8 @@ struct AddNewTaskView: View {
               .foregroundStyle(Color(.systemGray4))
           }
           Button(action: {
-              createTask()
-              self.isPresented.toggle()
+            createTask()
+            self.isPresented.toggle()
           }) {
             Text("Ajouter")
           }
