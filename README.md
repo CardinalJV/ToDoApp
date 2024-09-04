@@ -38,3 +38,6 @@ Clonez le projet depuis le dépôt GitHub, puis ouvrez-le dans Xcode. Assurez-vo
 
 Intégration de SwiftData : 
 Mise en place d'une solution pour enregistrer les données localement, offrant ainsi une expérience utilisateur plus fluide et une meilleure gestion des données hors ligne.
+
+## Screenshots 
+  <img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/Capture%20d’écran%202024-09-04%20à%2010.14.35.png" alt="Screenshots" title="Screenshots" width="" height=""/>
