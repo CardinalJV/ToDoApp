@@ -40,10 +40,6 @@ Intégration de SwiftData :
 Mise en place d'une solution pour enregistrer les données localement, offrant ainsi une expérience utilisateur plus fluide et une meilleure gestion des données hors ligne.
 
 ## Screenshots 
-  <img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.14.35.png" alt="Screenshots" title="Screenshots" width="250" height=""/>
-  <img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.19.32.png" alt="Screenshots" title="Screenshots" width="250" height=""/>
-  <img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.15.00.png" alt="Screenshots" title="Screenshots" width="250" height=""/>
-  <img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.15.11.png" alt="Screenshots" title="Screenshots" width="250" height=""/>
-  <img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.15.17.png" alt="Screenshots" title="Screenshots" width="250" height=""/>
-  <img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.16.45.png" alt="Screenshots" title="Screenshots" width="250" height=""/>
+
+<img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.14.35.png" alt="Screenshots" title="Screenshots" width="250" height=""/><img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.19.32.png" alt="Screenshots" title="Screenshots" width="250" height=""/><img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.15.00.png" alt="Screenshots" title="Screenshots" width="250" height=""/><img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.15.11.png" alt="Screenshots" title="Screenshots" width="250" height=""/><img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.15.17.png" alt="Screenshots" title="Screenshots" width="250" height=""/><img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.16.45.png" alt="Screenshots" title="Screenshots" width="250" height=""/>
 
