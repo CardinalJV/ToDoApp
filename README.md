@@ -40,4 +40,4 @@ Intégration de SwiftData :
 Mise en place d'une solution pour enregistrer les données localement, offrant ainsi une expérience utilisateur plus fluide et une meilleure gestion des données hors ligne.
 
 ## Screenshots 
-  <img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.14.35.png" alt="Screenshots" title="Screenshots" width="200" height=""/>
+  <img src="https://raw.githubusercontent.com/CardinalJV/ToDoApp/main/Screenshots/2024-09-04-10.14.35.png" alt="Screenshots" title="Screenshots" width="500" height=""/>
