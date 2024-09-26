@@ -3,6 +3,8 @@
 <a href="https://developer.apple.com/xcode/swiftdata/">
   <img src="https://raw.githubusercontent.com/CardinalJV/CardinalJV/main/assets/logo-swift/swiftdata-96x96_2x.png" alt="SwiftData" title="SwiftData" width="75" height="75"/></a>
 
+----
+
 # ToDoApp
 
 ToDoApp est une application de gestion de tâches développée en SwiftUI. Cette application permet aux utilisateurs de créer, organiser et suivre leurs tâches quotidiennes de manière simple et efficace.
