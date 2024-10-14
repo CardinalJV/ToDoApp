@@ -46,11 +46,6 @@ struct LandingView: View {
         await list_vm.readLists()
         await task_vm.readTasks()
       }
-      .onChange(of: self.list_vm.lists){
-        Task{
-          await list_vm.readLists()
-        }
-      }
     }
   }
 }
