@@ -8,24 +8,13 @@ import Foundation
 import SwiftUI
 
 struct AddNewListView: View {
-  @Binding var isPresented: Bool
+  @Environment(\.dismiss) var dismiss
   
-  @State var list_vm = ListViewModel()
+  var list_vm: ListViewModel
   @State var title = ""
   @State private var pictureColor: [String: Color] = ["blue": .blue]
   @State private var isActive_alert = false
   @State var fieldsComplete = false
-  
-  func createList() async {
-    // Vérifie que les champs ne sont pas vides
-    if title.isEmpty {
-      isActive_alert.toggle()
-    } else {
-      Task{
-        await list_vm.createList(title: self.title, pictureColor: self.pictureColor.keys.first!)
-      }
-    }
-  }
   
   let gridItems: [GridItem] = Array(repeating: GridItem(.flexible()), count: 6)
   
@@ -80,19 +69,22 @@ struct AddNewListView: View {
       .toolbar{
         ToolbarItem(placement: .topBarLeading) {
           Button(action: {
-              // Retourne a la vue parente
-            self.isPresented = false
+            self.dismiss()
           }) {
             Text("Annuler")
           }
         }
         ToolbarItem(placement: .topBarTrailing) {
           Button(action: {
-            Task {
-              await createList()
+            if title.isEmpty {
+              isActive_alert.toggle()
+            } else {
+              Task{
+                await self.list_vm.createList(title: self.title, pictureColor: self.pictureColor.keys.first!)
+                await self.list_vm.readLists()
+              }
+              self.dismiss()
             }
-              // Retourne a la vue parente
-            self.isPresented.toggle()
           }) {
             Text("Ajouter")
           }

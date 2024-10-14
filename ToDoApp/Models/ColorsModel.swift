@@ -28,5 +28,4 @@ struct ColorsModel {
   func stringFromColor(_ pictureColor: Color) -> String {
     return colors.first(where: { $0.value == pictureColor })?.key ?? colors.first(where: { $0.value == .gray })!.key
   }
-  
 }

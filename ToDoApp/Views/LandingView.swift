@@ -29,6 +29,7 @@ struct LandingView: View {
                   })
                 }
               }
+              .padding()
             }
             Button(action: {isPresented_AddNewListView.toggle()}, label: {
               Image(systemName: "plus.circle.fill")
@@ -37,20 +38,24 @@ struct LandingView: View {
             .bold()
           }
         }
-        .sheet(isPresented: $isPresented_AddNewListView) {
-          AddNewListView(isPresented: $isPresented_AddNewListView)
-        }
-        .task {
-          await list_vm.readLists()
-          await task_vm.readTasks()
-        }
-        .onChange(of: isPresented_AddNewListView){
-          Task{
-            await list_vm.readLists()
-          }
-        }
-        .padding()
       }
+      .sheet(isPresented: $isPresented_AddNewListView) {
+        AddNewListView(list_vm: self.list_vm)
+      }
+      .task {
+        await list_vm.readLists()
+        await task_vm.readTasks()
+      }
+      .onChange(of: self.list_vm.lists){
+        Task{
+          await list_vm.readLists()
+        }
+      }
+//      .onAppear{
+//        Task{
+//          await self.list_vm.readLists()
+//        }
+//      }
     }
   }
 }

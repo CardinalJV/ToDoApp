@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct ListResponse: Codable {
+struct ListResponse: Codable, Equatable {
   var records: [ListModel]
 }
 
-struct ListModel: Identifiable, Codable {
+struct ListModel: Identifiable, Codable, Equatable {
   var id: String? = nil
   var createdTime: String? = nil
   let fields: ListFields
 }
 
-struct ListFields: Codable {
+struct ListFields: Codable, Equatable {
   var tasks: [String]? = nil
   let title: String
   var itemCount: Int? = nil
