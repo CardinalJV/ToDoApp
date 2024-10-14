@@ -51,11 +51,6 @@ struct LandingView: View {
           await list_vm.readLists()
         }
       }
-//      .onAppear{
-//        Task{
-//          await self.list_vm.readLists()
-//        }
-//      }
     }
   }
 }
